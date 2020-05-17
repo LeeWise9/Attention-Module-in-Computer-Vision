@@ -44,7 +44,7 @@ CBAM 相比于 SENET 不仅有 Channel Attention Module，还有 Spatial Attenti
 ## Non-local Neural Networks<br>
 原理：https://blog.csdn.net/elaine_bao/article/details/80821306
 
-用non-local similarity来做图像 denoise。
+用 non-local similarity 来做图像 denoise。
 
 主要思想：CNN 中的 convolution 单元每次只关注邻域 kernel size 的区域，就算后期感受野越来越大，终究还是局部区域的运算，这样就忽略了全局其他片区（比如很远的像素）对当前区域的贡献。
 
@@ -59,7 +59,7 @@ CBAM 相比于 SENET 不仅有 Channel Attention Module，还有 Spatial Attenti
 ## DANet<br>
 原理：https://blog.csdn.net/wumenglu1018/article/details/95949039
 
-把Self-attention的思想用在图像分割，可通过long-range上下文关系更好地做到精准分割。
+把 Self-attention 的思想用在图像分割，可通过 long-range 上下文关系更好地做到精准分割。
 
 主要思想：把 deep feature map 进行 spatial-wise self-attention，同时也进行 channel-wise self-attetnion，最后将两个结果进行 element-wise sum 融合。
 
@@ -101,6 +101,9 @@ Pyramid Attention Network for Semantic Segmentation
 如图所示有两个注意力模块：FPA 和 GAU。
 
 #### FPA（Feature Pyramid Attention）<br>
+针对 SPP 结构的一些缺点（pooling 丢失局部信息，棋盘伪影效应，缺乏上下文信息等）提出优化方案。
+
+
 
 <p align="center">
 	<img src="https://img-blog.csdnimg.cn/20190417111743947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
@@ -109,7 +112,7 @@ Pyramid Attention Network for Semantic Segmentation
 #### GAU（Global Attention Upsample）<br>
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190417111623705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
+	<img src="https://img-blog.csdnimg.cn/20190417111623705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="500">
 </p>
 
 
