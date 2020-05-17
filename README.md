@@ -78,13 +78,13 @@ Attention map 计算的是所有像素与所有像素之间的相似性，空间
 在 DANet 的基础上减少了计算量（牺牲了准确率），前者 attention map 计算的空间复杂度为 (HxW)x(HxW)，本文采用 criss-cross，只计算每个像素与其同行同列即上的像素的相似性，间接计算到每个像素与每个像素的相似性，将空间复杂度降为 (HxW)x(H+W-1)。
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190509150804954.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
+	<img src="https://img-blog.csdnimg.cn/20190509150804954.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="500">
 </p>
 
 CCNet 的网络的架构与 DANet 相同，但是 attention 不同：在计算矩阵相乘时每个像素只抽取特征图中对应十字位置的像素进行点乘，计算相似度。
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190509151055122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
+	<img src="https://img-blog.csdnimg.cn/20190509151055122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="500">
 </p>
 <br>
 <br>
@@ -95,7 +95,7 @@ Pyramid Attention Network for Semantic Segmentation
 将 Attention 机制与金字塔结构结合，可以在高层语义指导的基础上提取相对于较低层的精确的密集特征，取代了其他方法里面的复杂的空洞卷积 dilated 和多个编码解码器的操作；使用全局 pooling 给底层特征加权，用于选取特征 map。
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190417111047993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
+	<img src="https://img-blog.csdnimg.cn/20190417111047993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="700">
 </p>
 
 如图所示有两个注意力模块：FPA 和 GAU。
@@ -108,7 +108,7 @@ Pyramid Attention Network for Semantic Segmentation
 * 3.金字塔卷积结构采用不同大小的卷积核，代表着不同的感受野，应对不同 scale 的问题。<br>
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190417111743947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
+	<img src="https://img-blog.csdnimg.cn/20190417111743947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="700">
 </p>
 
 #### GAU（Global Attention Upsample）<br>
@@ -117,7 +117,7 @@ Pyramid Attention Network for Semantic Segmentation
 抛弃了 decoder 的结构，用 Global Pooling 得到高层的权重，低层特征经过卷积实现与高层特征相同数量的 map，map 和低层相乘后再与高层相加。
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190417111623705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="400">
+	<img src="https://img-blog.csdnimg.cn/20190417111623705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="500">
 </p>
 <br>
 <br>
