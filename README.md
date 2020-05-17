@@ -101,23 +101,26 @@ Pyramid Attention Network for Semantic Segmentation
 如图所示有两个注意力模块：FPA 和 GAU。
 
 #### FPA（Feature Pyramid Attention）<br>
-针对 SPP 结构的一些缺点（pooling 丢失局部信息，棋盘伪影效应，缺乏上下文信息等）提出优化方案。
+针对 SPP 结构的一些缺点（pooling 丢失局部信息，对 small parts 预测不好，棋盘伪影效应，缺乏上下文信息等）提出优化方案。
 
-
+* 1.提取到高层特征后不再做 pooling 的操作，而通过卷积提取更高层的语义；<br>
+* 2.基于更高层语义的 Attention 机制，加强具有物体信息的部位带有的权值，得到带有 Attention 的输出；<br>
+* 3.金字塔卷积结构采用不同大小的卷积核，代表着不同的感受野，应对不同 scale 的问题。<br>
 
 <p align="center">
 	<img src="https://img-blog.csdnimg.cn/20190417111743947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="600">
 </p>
 
 #### GAU（Global Attention Upsample）<br>
+针对上采样重构图像计算量大的问题，设计一种新的高低层融合方法。
+
+抛弃了 decoder 的结构，用 Global Pooling 得到高层的权重，低层特征经过卷积实现与高层特征相同数量的 map，map 和低层相乘后再与高层相加。
 
 <p align="center">
-	<img src="https://img-blog.csdnimg.cn/20190417111623705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="500">
+	<img src="https://img-blog.csdnimg.cn/20190417111623705.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h5czQzMDM4MV8x,size_16,color_FFFFFF,t_70" alt="Sample"  width="400">
 </p>
-
-
-
-
+<br>
+<br>
 
 
 
