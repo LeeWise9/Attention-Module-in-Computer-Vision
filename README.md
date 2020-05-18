@@ -41,6 +41,36 @@ CBAM 相比于 SENET 不仅有 Channel Attention Module，还有 Spatial Attenti
 <br>
 <br>
 
+## Residual Attention Network<br>
+原理：https://www.jianshu.com/p/eb95c369fede
+
+图中左图显示了在残差注意力网络中主干网络和注意力模块之间的关系，注意力模块为主干网络以某一个特征图为节点的分叉子网络；右图中的结果显示网络模型中，不同层特征图响应的注意力不同，在浅层结构中，网络的注意力集中于背景等区域，而在深层结构中，网络的注意力特征图（Attention Feature Map）聚焦于待分类的物体。这印证了深层次的特征图具有更高的抽象性和语义表达能力，对于物体分类较浅层特征有较大的作用。
+
+<p align="center">
+	<img src="https://upload-images.jianshu.io/upload_images/13655458-ef57547ec9dad4fc.png" alt="Sample"  width="600">
+</p>
+
+残差注意力网络由多层注意力模块堆叠而成，每个注意力模块包含了两个分支：mask branch 和 trunk branch。其中 trunk branch 可以是当前的任何一种SOTA 卷积神经网络模型。mask branch 的主要部分就是残差注意力学习机制。通过下采样(down sampling)和上采样(up sampling)，以及残差模块(residual unit)，组成了注意力的机制。然后使用点乘操作将两个分支的特征图组合在一起，得到最终的输出特征图。
+
+<p align="center">
+	<img src="https://upload-images.jianshu.io/upload_images/13655458-463350acd5f5c740.png" alt="Sample"  width="600">
+</p>
+
+<p align="center">
+	<img src="https://upload-images.jianshu.io/upload_images/13655458-051308ea5a396fe6.png" alt="Sample"  width="400">
+</p>
+
+注意力模块可选三种类型：<br>
+* Mix Attention：对每个通道和每个空间位置使用 Sigmoid，是混合域的注意力；<br>
+* Channel Attention：对图片特征张量直接做全局平均池化（global average pooling），得到的是通道域的注意力（类比SENet）；<br>
+* Spatial Attention：求图片特征张量在通道域上的平均值的激活函数，忽略了通道域的信息，从而得到空间域的注意力。<br>
+
+<p align="center">
+	<img src="https://upload-images.jianshu.io/upload_images/13655458-b6dc6501e38f85dd.png" alt="Sample"  width="300">
+</p>
+<br>
+<br>
+
 ## Non-local Neural Networks<br>
 原理：https://blog.csdn.net/elaine_bao/article/details/80821306
 
