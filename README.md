@@ -1,8 +1,9 @@
 # Attention-Module-in-Computer-Vision
 This project summarizes the attention module in computer vision, including the principle and implementation.
 
-
 本文将总结一些 CV 算法中使用的的注意力机制。
+
+参考：https://blog.csdn.net/xys430381_1/article/details/89323444
 
 ## SENET<br>
 原理：https://blog.csdn.net/xys430381_1/article/details/89158063
